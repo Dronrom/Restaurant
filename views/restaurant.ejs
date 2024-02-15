@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: aliceblue;
+        }
+
+        .menu {
+            border-bottom: 1px solid grey;
+            margin: 20px;
+
+        }
+
+        header,
+        footer {
+            background-color: #b4afac;
+            color: white;
+            text-align: center;
+            padding: 5px;
+        }
+
+        footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        input {
+            width: 80%;
+            padding: 12px 20px;
+            margin: 10px auto;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        img {
+            width: 100%;
+            height: 200px;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 50px 0;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #menuContainer {
+            padding-top: 20px;
+            display: flex;
+            width: 67%;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .menuItem {
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+            height: 40%;
+            text-align: center;
+            justify-content: space-around;
+        }
+
+        .menuItem button {
+            width: 100%;
+        }
+
+        .order {
+            height: 50%;
+        }
+        .order label {
+            margin-top: 10px
+        }
+
+        .about {
+            padding-left: 100px;
+            position: relative;
+            font-size: 20px;
+        }
+
+        .about h1 {
+            text-align: center;
+            text-decoration-line: underline;
+            font-size: 40px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+            margin: 20px;
+            border: 5px solid #827c7c;
+            border-radius: 10px;
+        }
+
+        .container {
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+
+        .status {
+            height: 180px;
+            margin-top: 50px;
+        }
+
+        button {
+            margin-top: auto;
+            height: 50px;
+            background-color: #191818;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            text-align: center;
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>GOOD FOOD</h1>
+    </header>
+    <h1 class="main">MENU</h1>
+    <div class="main">
+
+        <div id="menuContainer">
+
+            <% for (let currItem of menu) { %>
+                <div class="menuItem">
+                    <form method="POST" action="/addItem/<%= currItem._id %>">
+                        <p type="text" value="<%= currItem.name %>" name="name" readonly />
+                        <img src="<%= currItem.image %>" />
+                        <p>
+                        <h4><%=currItem.name%></h4>
+                        <%= currItem.description %>
+                            </p>
+                            <p class="last">
+                            <h4>Price: <%= currItem.price %>
+                            </h4>
+                            </p>
+
+                            <button>Add to Order</button>
+                    </form>
+                </div>
+                <% } %>
+        </div>
+
+        <form class="container order" method="POST" action="/orderNow">
+            <label>Customer Name</label>
+            <input type="text" name="customerName" required />
+            <label>Delivery Address</label>
+            <input type="text" name="deliveryAddress" required />
+            <label>Date of Order</label>
+            <input type="date" id="today" name="dateOfOrder" required />
+            <h3>Items:</h3>
+            <ul>
+                <% for (let currItem of currentOrder) { %>
+                    <li>
+                        <%= currItem.name %> - <%= currItem.price %> 
+                        <button  type="button" onclick="removeItem('<%= currItem._id %>')">X</button>
+                    </li>
+                    <% } %>
+            </ul>
+            <% if (totalPrice===0) { %>
+                <h3>Empty Basket - Click Add to Order</h3>
+                <% } else {%>
+                    <h3>Total Price of Order = <%= totalPrice %>
+                    </h3>
+                    <% } %>
+                        <input class="last" type="hidden" value="<%= totalPrice %>" name="totalPrice" />
+                        <% if (orderPlaced.length> 0) { %>
+                            <h3>
+                                <%= orderPlaced %>
+                            </h3>
+                        <% } %>
+                                <button>Order Now</button>
+        </form>
+    </div>
+
+
+
+    <form class="container status" method="POST" action="/orderStatus/">
+        <% if (orderStatus.length> 0) { %>
+            <h3>
+                <%= orderStatus %>
+            </h3>
+            <% } else {%>
+                <h2>Check Order Status</h2>
+                <input class="last" type="text" name="orderNum" placeholder="Enter Order Number" />
+                <button>Submit</button>
+                <% } %>
+    </form>
+    <footer>
+        <div class="about">
+            <h1>Hours of operation</h1>
+            <h3>Monday - Friday: 11:00am - 9:00pm</h3>
+            <h3>Saturday - Sunday: 12:00pm - 8:00pm</h3>
+            <p>Good Food is a restaurant that offers a variety of delicious meals. Our menu includes a variety of meals,
+                including vegetarian and non-vegetarian options. We also offer a variety of drinks and desserts. We are
+                open 7 days a week and offer delivery services. We are located at 666 Heaven Road, Toronto, ON. We look
+                forward to serving you!</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('today').value = new Date().toISOString().substring(0, 10);
+        console.log(currentOrder);
+        function removeItem(itemId) {
+        // Fetch updated data from server if necessary (for data consistency)
+        fetch('/addItem/:dishId', {
+            method: 'POST',
+            body: JSON.stringify({ itemId: itemId }) // Send item ID
+        })
+    .then(response => response.json())
+    .then(updatedOrder => {
+        // Update currentOrder array in your JavaScript based on received data
+        currentOrder = updatedOrder;
+
+        // Remove item from DOM
+        const listItem = document.getElementById(itemId);
+        if (listItem) {
+            listItem.parentNode.removeChild(listItem);
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching updated data:', error);
+        // Handle errors gracefully, e.g., display an error message to the user
+    });
+}
+    </script>
+</body>
+
+</html>

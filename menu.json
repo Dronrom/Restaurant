@@ -1,0 +1,40 @@
+[
+    
+        {
+            "name": "Risotto",
+            "image": "https://www.allrecipes.com/thmb/tr5wFzkcoLvEyhIw3k2Qvf29_zU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/9342335-6b161e4324ae4f6a8f6d603d2d78c924.jpg",
+            "description": "Indulge in creamy comfort with our classic Risotto. Arborio rice cooked to perfection, simmered in savory broth, and enriched with a generous blend of cheeses for a truly decadent experience.",
+            "price": "23"
+        },
+        {
+            "name": "Pasta",
+            "image": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2021/02/05/Baked-Feta-Pasta-4_s4x3.jpg.rend.hgtvcom.1280.1280.suffix/1615916524567.jpeg",
+            "description": "Made daily with farm-fresh eggs and local flour. Light and delicate texture, perfect for soaking up all the delicious flavors.",
+            "price": "20"
+        },
+        {
+            "name": "Pizza",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/9/91/Pizza-3007395.jpg",
+            "description": "Crafted with a fresh, hand-tossed crust and topped with premium ingredients. Select from our classic or build-your-own options. (List popular topping combinations or mention signature pizzas)",
+            "price": "25"
+        },
+        {
+            "name": "Burger",
+            "image": "https://www.allrecipes.com/thmb/5JVfA7MxfTUPfRerQMdF-nGKsLY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/25473-the-perfect-basic-burger-DDMFS-4x3-56eaba3833fd4a26a82755bcd0be0c54.jpg",
+            "description": "Sink your teeth into a juicy, all-beef patty cooked to your liking. Served on a toasted bun with fresh toppings. (Mention signature burger options or customization options)",
+            "price": "15"
+        },
+        {
+            "name": "Salad",
+            "image": "https://www.foodandwine.com/thmb/q9tccMZgV9aifYtmlvh9qcPmb_8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Greek-Salad-Romaine-FT-RECIPE1222-8a49c63ede714dfb8fdc0c35088fcd18.jpg",
+            "description": "Light and refreshing, packed with crisp greens, seasonal vegetables, and your choice of protein or dressing. (Highlight unique ingredients or signature salad options)",
+            "price": "10"
+        },
+        {
+            "name": "Soup",
+            "image": "https://www.seriouseats.com/thmb/DvSDZoMw8WSOQFAMgf3L2wlfY9Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/053123_TomatoSoup-MPPSoupsAndStews-Morgan-Hunt-Glaze-f59a081d7efb4625a75a1a907a6b1cbf.jpg",
+            "description": "Warm up with a bowl of our homemade soup, crafted with fresh ingredients and changing seasonally. (Mention current soup options or highlight the variety offered)",
+            "price": "12"
+        }
+    
+]
